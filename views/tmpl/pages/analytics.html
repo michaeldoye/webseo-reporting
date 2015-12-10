@@ -1,4 +1,12 @@
-<div class="page page-intro"> <div class="pageheader"> <h2>{{page.title}} <span>// {{page.subtitle}}</span></h2> <div class="page-bar"> <ul class="page-breadcrumb"> <li> <a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a> </li> <li> <a href="javascript:;">Extra Pages</a> </li> <li> <a ui-sref="app.pages.intro">{{page.title}}</a> </li> </ul> </div> </div> <p class="lead">This is the intro page example.</p> <button id="auth-button" hidden>Authorize</button> <h1>Hello Analytics</h1> <textarea cols="80" rows="20" id="query-output"></textarea> </div> <script>// Replace with your client ID from the developer console.
+<div class="page page-intro"> <div class="pageheader"> <h2>{{page.title}} <span>// {{page.subtitle}}</span></h2> <div class="page-bar"> <ul class="page-breadcrumb"> <li> <a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a> </li> <li> <a href="javascript:;">Extra Pages</a> </li> <li> <a ui-sref="app.pages.intro">{{page.title}}</a> </li> </ul> </div> </div> <p class="lead">This is the intro page example.</p> <button id="auth-button" hidden>Authorize</button> <h1>Hello Analytics</h1> <div class="row"> <div class="col-md-4"> <!-- tile --> <section class="tile" fullscreen="isFullscreen01"> <!-- tile header --> <div class="tile-header dvd dvd-btm"> <h1 class="custom-font"><strong>Basic</strong> Tile</h1> <ul class="controls"> <li class="dropdown" dropdown on-toggle="toggled(open)"> <a href dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a> <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp"> <li> <a href tile-control-toggle> <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span> <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span> </a> </li> <li> <a href tile-control-refresh ng-click="ajaxFaker()"> <fa name="refresh"></fa> Refresh </a> </li> <li> <a href tile-control-fullscreen ng-click="isFullscreen01 = !isFullscreen01"> <fa name="expand"></fa> Fullscreen </a> </li> </ul> </li> <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li> </ul> </div> <!-- /tile header --> <!-- tile widget --> <div class="tile-widget"> <p class="input-group"> <input type="text" class="analytics-date-select form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-valid-required ng-valid-date" datepicker-popup="dd-MMMM-yyyy" ng-model="dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" name="daterange" aria-required="false" aria-invalid="false"><!-- ngIf: isOpen --> <span class="input-group-btn"> <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button> </span> </p> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body"> <div id="myfirstchart" style="height: 250px"> <md-progress-linear md-mode="indeterminate"></md-progress-linear> </div> </div> <!-- /tile body --> <!-- tile footer --> <div class="tile-footer"> <p>This is tile footer area.</p> </div> <!-- /tile footer --> </section> <!-- /tile --> </div> <div class="col-md-4"> <!-- tile goals --> <section class="tile tile-simple tbox"> <!-- tile widget --> <div class="tile-widget bg-amethyst text-center p-30 tcol"> <i class="fa fa-rocket fa-3x"></i> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body text-center tcol"> <h1 class="m-0 goals-all"><md-progress-circular md-mode="indeterminate"></md-progress-circular></h1> <span class="text-muted">Goal Completions</span> </div> <!-- /tile body --> </section> <!-- /tile --> <!-- tile goals --> <section class="tile tile-simple tbox"> <!-- tile widget --> <div class="tile-widget bg-amethyst text-center p-30 tcol"> <i class="fa fa-rocket fa-3x"></i> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body text-center tcol"> <h1 class="m-0 goals-rate"><md-progress-circular md-mode="indeterminate"></md-progress-circular></h1> <span class="text-muted">Goal Conversion Rate</span> </div> <!-- /tile body --> </section> <!-- /tile --> </div> </div> </div> <script>$(function() {
+    $('input[name="daterange"]').daterangepicker({
+        locale: {
+          format: 'YYYY-MM-DD'
+        }
+    });
+});
+
+  // Replace with your client ID from the developer console.
   var CLIENT_ID = '925880593823-6rec2rlj1d1mc5v7vvbos74kucatto1k.apps.googleusercontent.com';
 
   // Set authorized scope.
@@ -113,21 +121,46 @@ function handleProfiles(response) {
   }
 }
 
+function updateAnalyticsData(profileId, toDate, fromDate) {
+    // Query the Core Reporting API for the number sessions for
+    // the past seven days.
+    gapi.client.analytics.data.ga.get({
+      'ids': 'ga:' + profileId,
+      'start-date': fromDate ? fromDate : '7daysAgo',
+      'end-date': toDate ? toDate : 'today',
+      'metrics': 'ga:sessions,ga:bounces,ga:organicSearches,ga:goalCompletionsAll,ga:goalConversionRateAll',
+      'dimensions': 'ga:source'
+    })
+    .then(function(response) {
+      // Draw the chart with the analytics data
+      drawChart(response.result.totalsForAllResults);
+      // Update goalCompletions
+      renderGoals(response.result.totalsForAllResults);
+    })
+}
 
 function queryCoreReportingApi(profileId) {
+    $(document).on("change", ".analytics-date-select", function() {
+        fromdate = $(this).val().split(" - ")[0];
+        todate = $(this).val().split(" - ")[1];
+        // Fetch the analytics data
+        updateAnalyticsData(profileId, todate, fromdate);
+    });
+
   // Query the Core Reporting API for the number sessions for
   // the past seven days.
   gapi.client.analytics.data.ga.get({
     'ids': 'ga:' + profileId,
     'start-date': '7daysAgo',
     'end-date': 'today',
-    'metrics': 'ga:sessions,ga:bounces,ga:organicSearches',
+    'metrics': 'ga:sessions,ga:bounces,ga:organicSearches,ga:goalCompletionsAll,ga:goalConversionRateAll',
     'dimensions': 'ga:source'
   })
   .then(function(response) {
-    console.log(response.result.totalsForAllResults);
-    var formattedJson = JSON.stringify(response.result, null, 2);
-    document.getElementById('query-output').value = formattedJson;
+    // Draw the chart with the analytics data
+    drawChart(response.result.totalsForAllResults);
+    // Update goalCompletions
+    renderGoals(response.result.totalsForAllResults);
   })
   .then(null, function(err) {
       // Log any errors.
@@ -136,4 +169,23 @@ function queryCoreReportingApi(profileId) {
 }
 
   // Add an event listener to the 'auth-button'.
-  document.getElementById('auth-button').addEventListener('click', authorize);</script> <script src="https://apis.google.com/js/client.js?onload=authorize"></script>
+  document.getElementById('auth-button').addEventListener('click', authorize);
+
+  //chart
+  function drawChart(data) {
+      $('#myfirstchart').empty();
+      Morris.Donut({
+        element: 'myfirstchart',
+        data: [
+          {label: "Sessions", value: data['ga:sessions']},
+          {label: "Bounces", value: data['ga:bounces']},
+          {label: "Organic Searches", value: data['ga:organicSearches']}
+        ]
+      });
+  }
+
+  function renderGoals(data) {
+      var goalRate = data['ga:goalConversionRateAll'];
+      $('.goals-rate').empty().html(Math.floor(goalRate)+'%');
+      $('.goals-all').empty().html(data['ga:goalCompletionsAll']);
+  }</script> <script src="https://apis.google.com/js/client.js?onload=authorize"></script>
