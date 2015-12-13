@@ -1,234 +1,25 @@
-<div class="page page-intro"> <div class="pageheader"> <h2>{{page.title}} <span>// {{page.subtitle}}</span></h2> <div class="page-bar"> <ul class="page-breadcrumb"> <li> <a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a> </li> <li> <a href="javascript:;">Reports</a> </li> <li> <a ui-sref="app.analytics">{{page.title}}</a> </li> </ul> </div> </div> <p class="lead">This is the intro page example.</p> <button id="auth-button" hidden>Authorize</button> <!-- tile date selector --> <section class="tile" fullscreen="isFullscreen02"> <!-- tile header --> <div class="tile-header dvd dvd-btm"> <h1 class="custom-font"><strong>Date </strong>Selection</h1> <ul class="controls"> <li class="dropdown" dropdown on-toggle="toggled(open)"> <a href dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a> <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp"> <li> <a href tile-control-toggle> <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span> <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span> </a> </li> <li> <a href tile-control-refresh ng-click="ajaxFaker()"> <fa name="refresh"></fa> Refresh </a> </li> <li> <a href tile-control-fullscreen ng-click="isFullscreen02 = !isFullscreen02"> <fa name="expand"></fa> Fullscreen </a> </li> </ul> </li> <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li> </ul> </div> <!-- /tile header --> <!-- tile widget --> <div class="tile-widget"> <p>Choose a date range below (Defaults to the last 30 days)</p> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body"> <p class="input-group"> <input type="text" class="analytics-date-select form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-valid-required ng-valid-date" datepicker-popup="dd-MMMM-yyyy" ng-model="dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" name="daterange" aria-required="false" aria-invalid="false"><!-- ngIf: isOpen --> <span class="input-group-btn"> <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button> </span> </p> </div> <!-- /tile body --> </section> <!-- /tile date selector --> <div class="row"> <div class="col-md-4"> <!-- tile overview --> <section ng-controller="ToasterDemoCtrl" class="tile toasters" fullscreen="isFullscreen01"> <!-- tile header --> <div class="tile-header dvd dvd-btm"> <h1 class="custom-font"><strong>Traffic</strong> Overview</h1> <ul class="controls"> <li class="dropdown" dropdown on-toggle="toggled(open)"> <a href dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a> <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp"> <li> <a href tile-control-toggle> <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span> <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span> </a> </li> <li> <a href tile-control-refresh ng-click="ajaxFaker()"> <fa name="refresh"></fa> Refresh </a> </li> <li> <a href tile-control-fullscreen ng-click="isFullscreen01 = !isFullscreen01"> <fa name="expand"></fa> Fullscreen </a> </li> </ul> </li> <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li> </ul> </div> <!-- /tile header --> <!-- tile widget --> <div class="tile-widget"> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body"> <div id="myfirstchart" style="height: 285px"> <md-progress-linear md-mode="indeterminate"></md-progress-linear> </div> </div> <!-- /tile body --> <!-- tile footer --> <div class="tile-footer"> <p>Last 30 Days</p> </div> <!-- /tile footer --> </section> <!-- /tile --> </div> <div class="col-md-4"> <!-- tile goals --> <section class="tile tile-simple tbox"> <!-- tile widget --> <div class="tile-widget bg-amethyst text-center p-30 tcol"> <i class="fa fa-trophy fa-3x"></i> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body text-center tcol"> <h1 class="m-0 goals-all"><md-progress-linear md-mode="indeterminate"></md-progress-linear></h1> <span class="text-muted">Goal Completions</span> </div> <!-- /tile body --> </section> <!-- /tile --> <!-- tile goals rate --> <section class="tile tile-simple tbox"> <!-- tile widget --> <div class="tile-widget bg-amethyst text-center p-30 tcol"> <i class="fa fa-bar-chart-o fa-3x"></i> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body text-center tcol"> <h1 class="m-0 goals-rate"><md-progress-linear md-mode="indeterminate"></md-progress-linear></h1> <span class="text-muted">Goal Conversion Rate</span> </div> <!-- /tile body --> </section> <!-- /tile goals rate --> <!-- tile avg time on page --> <section class="tile tile-simple tbox"> <!-- tile widget --> <div class="tile-widget bg-amethyst text-center p-30 tcol"> <i class="fa fa-leaf fa-3x"></i> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body text-center tcol"> <h1 class="m-0 avg-page-time"><md-progress-linear md-mode="indeterminate"></md-progress-linear></h1> <span class="text-muted">Organic Goals</span> </div> <!-- /tile body --> </section> <!-- /tile avg time on page --> <!-- tile organic Searches --> <section class="tile tile-simple tbox"> <!-- tile widget --> <div class="tile-widget bg-amethyst text-center p-30 tcol"> <i class="fa fa-rocket fa-3x"></i> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body text-center tcol"> <h1 class="m-0 organic-searches"><md-progress-linear md-mode="indeterminate"></md-progress-linear></h1> <span class="text-muted">Organic Searches</span> </div> <!-- /tile body --> </section> <!-- /tile organic Searches --> </div> <div class="col-md-4"> <!-- tile --> <section ng-controller="ToasterDemoCtrl" class="tile toasters" fullscreen="isFullscreen01"> <!-- tile header --> <div class="tile-header dvd dvd-btm"> <h1 class="custom-font"><strong>Traffic</strong> Sources Summary</h1> <ul class="controls"> <li class="dropdown" dropdown on-toggle="toggled(open)"> <a href dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a> <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp"> <li> <a href tile-control-toggle> <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span> <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span> </a> </li> <li> <a href tile-control-refresh ng-click="ajaxFaker()"> <fa name="refresh"></fa> Refresh </a> </li> <li> <a href tile-control-fullscreen ng-click="isFullscreen01 = !isFullscreen01"> <fa name="expand"></fa> Fullscreen </a> </li> </ul> </li> <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li> </ul> </div> <!-- /tile header --> <!-- tile widget --> <div class="tile-widget"> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body"> <div id="myfirstchart1" style="height: 285px"> <md-progress-linear md-mode="indeterminate"></md-progress-linear> </div> </div> <!-- /tile body --> <!-- tile footer --> <div class="tile-footer"> <p>Last 30 Days</p> </div> <!-- /tile footer --> </section> <!-- /tile --> </div> </div> <!-- /row--> </div> <script>$(function() {
-    $('input[name="daterange"]').daterangepicker({
-        locale: {
-          format: 'YYYY-MM-DD'
-        }
-    });
-});
-
-  // Replace with your client ID from the developer console.
-  var CLIENT_ID = '925880593823-6rec2rlj1d1mc5v7vvbos74kucatto1k.apps.googleusercontent.com';
-
-  // Set authorized scope.
-  var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
-
-
-  function authorize(event) {
-    // Handles the authorization flow.
-    // `immediate` should be false when invoked from the button click.
-    var useImmdiate = event ? false : true;
-    var authData = {
-      client_id: CLIENT_ID,
-      scope: SCOPES,
-      immediate: useImmdiate
-    };
-
-    gapi.auth.authorize(authData, function(response) {
-      var authButton = document.getElementById('auth-button');
-      if (response.error) {
-        authButton.hidden = false;
-      }
-      else {
-        authButton.hidden = true;
-        queryAccounts();
-      }
-    });
-  }
-
-
-function queryAccounts() {
-  // Load the Google Analytics client library.
-  gapi.client.load('analytics', 'v3').then(function() {
-
-    // Get a list of all Google Analytics accounts for this user
-    gapi.client.analytics.management.accounts.list().then(handleAccounts);
+<div class="page page-intro"> <div class="pageheader"> <h2>{{page.title}} <span>// {{page.subtitle}}</span></h2> <div class="page-bar"> <ul class="page-breadcrumb"> <li> <a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a> </li> <li> <a href="javascript:;">Reports</a> </li> <li> <a ui-sref="app.analytics">{{page.title}}</a> </li> </ul> </div> </div> <p class="lead">This is the intro page example.</p> <button id="auth-button" hidden>Authorize</button> <div class="row"> <div class="col-md-6"> <!-- tile date selector --> <section class="tile" fullscreen="isFullscreen02"> <!-- tile header --> <div class="tile-header dvd dvd-btm"> <h1 class="custom-font"><strong>Date </strong>Selection</h1> <ul class="controls"> <li class="dropdown" dropdown on-toggle="toggled(open)"> <a href dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a> <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp"> <li> <a href tile-control-toggle> <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span> <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span> </a> </li> <li> <a href tile-control-refresh ng-click="ajaxFaker()"> <fa name="refresh"></fa> Refresh </a> </li> <li> <a href tile-control-fullscreen ng-click="isFullscreen02 = !isFullscreen02"> <fa name="expand"></fa> Fullscreen </a> </li> </ul> </li> <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li> </ul> </div> <!-- /tile header --> <!-- tile widget --> <div class="tile-widget no-padding"> <p>Choose a date range below (Defaults to the last 30 days)</p> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body"> <p class="input-group"> <input type="text" class="analytics-date-select form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-valid-required ng-valid-date" datepicker-popup="dd-MMMM-yyyy" ng-model="dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" name="daterange" aria-required="false" aria-invalid="false"><!-- ngIf: isOpen --> <span class="input-group-btn"> <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button> </span> </p> </div> <!-- /tile body --> </section> <!-- /tile date selector --> </div> <!--/col --> <div class="col-md-6"> <!-- tile --> <section class="tile" fullscreen="isFullscreen01"> <!-- tile header --> <div class="tile-header dvd dvd-btm"> <h1 class="custom-font"><strong>Month</strong> To Month</h1> <ul class="controls"> <li class="dropdown" dropdown on-toggle="toggled(open)"> <a href dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a> <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp"> <li> <a href tile-control-toggle> <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span> <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span> </a> </li> <li> <a href tile-control-refresh ng-click="ajaxFaker()"> <fa name="refresh"></fa> Refresh </a> </li> <li> <a href tile-control-fullscreen ng-click="isFullscreen01 = !isFullscreen01"> <fa name="expand"></fa> Fullscreen </a> </li> </ul> </li> <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li> </ul> </div> <!-- /tile header --> <!-- tile body --> <div class="tile-body"> <div class="row"> <div class="col-md-3 col-sm-6"> <p class="text-small text-strong text-uppercase custom-font">Organic Traffic</p> <ul class="list-inline"> <li><b>This Month</b></li> <li class="organic-traffic-comapare">Loading</li> </ul> </div> <div class="col-md-3 col-sm-6 border-right"> <p class="text-small text-strong text-uppercase custom-font">&nbsp;</p> <ul class="list-inline"> <li><b>Last Month</b></li> <li class="organic-traffic-comapare-prev">Loading</li> </ul> </div> <div class="col-md-3 col-sm-6"> <p class="text-small text-strong text-uppercase custom-font">Organic Goals</p> <ul class="list-inline"> <li><b>This Month</b></li> <li class="organic-goals-compare">Loading</li> </ul> </div> <div class="col-md-3 col-sm-6"> <p class="text-small text-strong text-uppercase custom-font">&nbsp;</p> <ul class="list-inline"> <li><b>Last Month</b></li> <li class="organic-goals-compare-prev">Loading</li> </ul> </div> </div> </div> <!-- /tile body --> </section> <!-- /tile --> </div> </div> <!--/row --> <div class="row"> <div class="col-md-4"> <!-- tile overview --> <section ng-controller="ToasterDemoCtrl" class="tile toasters" fullscreen="isFullscreen01"> <!-- tile header --> <div class="tile-header dvd dvd-btm"> <h1 class="custom-font"><strong>Traffic</strong> Overview</h1> <ul class="controls"> <li class="dropdown" dropdown on-toggle="toggled(open)"> <a href dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a> <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp"> <li> <a href tile-control-toggle> <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span> <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span> </a> </li> <li> <a href tile-control-refresh ng-click="ajaxFaker()"> <fa name="refresh"></fa> Refresh </a> </li> <li> <a href tile-control-fullscreen ng-click="isFullscreen01 = !isFullscreen01"> <fa name="expand"></fa> Fullscreen </a> </li> </ul> </li> <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li> </ul> </div> <!-- /tile header --> <!-- tile widget --> <div class="tile-widget"> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body"> <div id="myfirstchart" style="height: 285px"> <md-progress-linear md-mode="indeterminate"></md-progress-linear> </div> </div> <!-- /tile body --> <!-- tile footer --> <div class="tile-footer"> <p>Last 30 Days</p> </div> <!-- /tile footer --> </section> <!-- /tile --> </div> <div class="col-md-4"> <!-- tile goals --> <section class="tile tile-simple tbox"> <!-- tile widget --> <div class="tile-widget bg-amethyst text-center p-30 tcol"> <i class="fa fa-trophy fa-3x"></i> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body text-center tcol"> <h1 class="m-0 goals-all"><md-progress-linear md-mode="indeterminate"></md-progress-linear></h1> <span class="text-muted">Goal Completions</span> </div> <!-- /tile body --> </section> <!-- /tile --> <!-- tile goals rate --> <section class="tile tile-simple tbox"> <!-- tile widget --> <div class="tile-widget bg-amethyst text-center p-30 tcol"> <i class="fa fa-bar-chart-o fa-3x"></i> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body text-center tcol"> <h1 class="m-0 goals-rate"><md-progress-linear md-mode="indeterminate"></md-progress-linear></h1> <span class="text-muted">Goal Conversion Rate</span> </div> <!-- /tile body --> </section> <!-- /tile goals rate --> <!-- tile avg time on page --> <section class="tile tile-simple tbox"> <!-- tile widget --> <div class="tile-widget bg-amethyst text-center p-30 tcol"> <i class="fa fa-leaf fa-3x"></i> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body text-center tcol"> <h1 class="m-0 avg-page-time"><md-progress-linear md-mode="indeterminate"></md-progress-linear></h1> <span class="text-muted">Organic Goals</span> </div> <!-- /tile body --> </section> <!-- /tile avg time on page --> <!-- tile organic Searches --> <section class="tile tile-simple tbox"> <!-- tile widget --> <div class="tile-widget bg-amethyst text-center p-30 tcol"> <i class="fa fa-rocket fa-3x"></i> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body text-center tcol"> <h1 class="m-0 organic-searches"><md-progress-linear md-mode="indeterminate"></md-progress-linear></h1> <span class="text-muted">Organic Searches</span> </div> <!-- /tile body --> </section> <!-- /tile organic Searches --> </div> <div class="col-md-4"> <!-- tile --> <section ng-controller="ToasterDemoCtrl" class="tile toasters" fullscreen="isFullscreen01"> <!-- tile header --> <div class="tile-header dvd dvd-btm"> <h1 class="custom-font"><strong>Traffic</strong> Sources Summary</h1> <ul class="controls"> <li class="dropdown" dropdown on-toggle="toggled(open)"> <a href dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a> <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp"> <li> <a href tile-control-toggle> <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span> <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span> </a> </li> <li> <a href tile-control-refresh ng-click="ajaxFaker()"> <fa name="refresh"></fa> Refresh </a> </li> <li> <a href tile-control-fullscreen ng-click="isFullscreen01 = !isFullscreen01"> <fa name="expand"></fa> Fullscreen </a> </li> </ul> </li> <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li> </ul> </div> <!-- /tile header --> <!-- tile widget --> <div class="tile-widget"> </div> <!-- /tile widget --> <!-- tile body --> <div class="tile-body"> <div id="myfirstchart1" style="height: 285px"> <md-progress-linear md-mode="indeterminate"></md-progress-linear> </div> </div> <!-- /tile body --> <!-- tile footer --> <div class="tile-footer"> <p>Last 30 Days</p> </div> <!-- /tile footer --> </section> <!-- /tile --> </div> </div> <!-- /row--> </div> <script>$(function() {
+  $('input[name="daterange"]').daterangepicker({
+    locale: {
+      format: 'YYYY-MM-DD'
+    },
+    ranges: {
+      'Today': [moment(), moment()],
+      'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+      'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+      'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+      'This Month': [moment().startOf('month'), moment().endOf('month')],
+      'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    }
   });
-}
-
-
-function handleAccounts(response) {
-    console.log(response);
-  // Handles the response from the accounts list method.
-  if (response.result.items && response.result.items.length) {
-    // Get the first Google Analytics account.
-    // TODO - this will need to be
-    var firstAccountId = "48361851";//response.result.items[0].id;
-
-    // Query for properties.
-    queryProperties(firstAccountId);
-  } else {
-    console.log('No accounts found for this user.');
-  }
-}
-
-
-function queryProperties(accountId) {
-  // Get a list of all the properties for the account.
-  gapi.client.analytics.management.webproperties.list(
-      {'accountId': accountId})
-    .then(handleProperties)
-    .then(null, function(err) {
-      // Log any errors.
-      console.log(err);
-  });
-}
-
-
-function handleProperties(response) {
-    //console.log(response);
-  // Handles the response from the webproperties list method.
-  if (response.result.items && response.result.items.length) {
-
-    // Get the first Google Analytics account
-    var firstAccountId = response.result.items[0].accountId;
-
-    // Get the first property ID
-    var firstPropertyId = response.result.items[0].id;
-
-    // Query for Views (Profiles).
-    queryProfiles(firstAccountId, firstPropertyId);
-  } else {
-    console.log('No properties found for this user.');
-  }
-}
-
-
-function queryProfiles(accountId, propertyId) {
-  // Get a list of all Views (Profiles) for the first property
-  // of the first Account.
-  gapi.client.analytics.management.profiles.list({
-      'accountId': accountId,
-      'webPropertyId': propertyId
-  })
-  .then(handleProfiles)
-  .then(null, function(err) {
-      // Log any errors.
-      console.log(err);
-  });
-}
-
-
-function handleProfiles(response) {
-  // Handles the response from the profiles list method.
-  if (response.result.items && response.result.items.length) {
-    // Get the first View (Profile) ID.
-    var firstProfileId = response.result.items[0].id;
-
-    // Query the Core Reporting API.
-    queryCoreReportingApi(firstProfileId);
-  } else {
-    console.log('No views (profiles) found for this user.');
-  }
-}
-
-function updateAnalyticsData(profileId, toDate, fromDate) {
-    // Query the Core Reporting API for the number sessions for
-    // the past seven days.
-    gapi.client.analytics.data.ga.get({
-      'ids': 'ga:' + profileId,
-      'start-date': fromDate ? fromDate : '30daysAgo',
-      'end-date': toDate ? toDate : 'today',
-      'metrics': 'ga:sessions,ga:bounces,ga:organicSearches,ga:goalCompletionsAll,ga:goalConversionRateAll,ga:pageValue,ga:pageviews',
-      'dimensions': 'ga:medium'
-    })
-    .then(function(response) {
-      // Draw the chart with the analytics data
-      drawChart(response.result.totalsForAllResults);
-      // Update goalCompletions
-      renderGoals(response.result.totalsForAllResults);
-      //
-      renderPages(response.result.rows);
-    })
-}
-
-function queryCoreReportingApi(profileId) {
-  // Update the data when a new date has been chosen 
-  $(document).on("click", ".applyBtn", function() {
-      fromdate = $('.analytics-date-select').val().split(" - ")[0];
-      todate = $('.analytics-date-select').val().split(" - ")[1];
-      if (todate && fromdate) {
-          // Fetch the analytics data
-          updateAnalyticsData(profileId, todate, fromdate);
-          // Update date indicator
-          $('.tile-footer').empty().html("<p>For dates between <b>"+fromdate+"</b> and <b>"+todate+"</b></p>");
-      } else {
-          var scope = angular.element($(".toasters")).scope();
-          scope.$apply(function(){
-              scope.noDateToast();
-          })
-      }
-  });
-
-  // Query the Core Reporting API for the number sessions for
-  // the past seven days.
-  gapi.client.analytics.data.ga.get({
-    'ids': 'ga:' + profileId,
-    'start-date': '30daysAgo',
-    'end-date': 'today',
-    'metrics': 'ga:sessions,ga:bounces,ga:organicSearches,ga:goalCompletionsAll,ga:goalConversionRateAll,ga:pageValue,ga:pageviews',
-    'dimensions': 'ga:medium'
-  })
-  .then(function(response) {
-      console.log(response);
-    // Draw the chart with the analytics data
-    drawChart(response.result.totalsForAllResults);
-    // Update goalCompletions
-    renderGoals(response.result.totalsForAllResults);
-    // show page views
-    renderPages(response.result.rows);
-  })
-  .then(null, function(err) {
-      // Log any errors.
-      console.log(err);
-  });
-}
-
-  // Add an event listener to the 'auth-button'.
-  document.getElementById('auth-button').addEventListener('click', authorize);
-
-  //chart
-  function drawChart(data) {
-      $('#myfirstchart').empty();
-      Morris.Donut({
-        element: 'myfirstchart',
-        data: [
-          {label: "Sessions", value: data['ga:sessions']},
-          {label: "Bounces", value: data['ga:bounces']},
-          {label: "Organic Searches", value: data['ga:organicSearches']}
-        ]
-      });
-  }
-
-  // Goals
-  function renderGoals(data) {
-      var goalRate = data['ga:goalConversionRateAll'];
-      $('.goals-rate').empty().html(Math.floor(goalRate)+'%');
-      $('.goals-all').empty().html(data['ga:goalCompletionsAll']);
-      $('.organic-searches').empty().html(data['ga:organicSearches']);
-      //$('.avg-page-time').empty().html(data['ga:pageviews']);
-  }
-
-  // Show traffic sources summary
-  function renderPages(data) {
-    console.log(data);
-      $('.table tbody, .md-container').empty();
-      var chartData = [];
-      $.each(data, function(i, v){
-        if (v[0] == 'organic') {
-          $('.avg-page-time').empty().html(v[4]);
-        };
-        var a = new Object();
-        console.log(v);
-        a.label = v[0];
-        a.value = v[1]
-        chartData.push(a);
-      });
-      $('#myfirstchart1').empty();
-
-      Morris.Donut({
-        element: 'myfirstchart1',
-        data: chartData
-      });
-  }</script> <script src="https://apis.google.com/js/client.js?onload=authorize"></script> <style media="screen">section.tile.tile-simple.tbox {
+});</script> <script src="scripts/controllers/analytics-overview.js"></script> <script src="https://apis.google.com/js/client.js?onload=authorize"></script> <style media="screen">section.tile.tile-simple.tbox {
     margin-bottom: 13px;
-}</style>
+  }
+  .border-right {
+    border-right: 1px solid #d9d9d9;
+    padding-right: 0px !important;
+  }
+  .no-padding {
+    padding-bottom: 0px !important;
+    padding-top: 3px !important;
+  }</style>
